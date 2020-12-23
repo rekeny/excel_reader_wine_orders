@@ -1,0 +1,2 @@
+class ItemsImport < ApplicationRecord
+end
