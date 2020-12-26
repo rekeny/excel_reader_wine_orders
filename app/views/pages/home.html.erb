@@ -8,12 +8,15 @@
 <% end %>
 
 <% @customers.each do |customer| %>
-  <p><%= customer.date %> -
-    <%= customer.order_num %> -
-    <%= customer.name %> -
-    <% customer.orders.map do |order| %>
-      <%= order.quantity %>x
-      <%= order.product.description %>
-    <% end %>
-  </p>
+  <div class="d-flex">
+    <p><%= customer.date %> -
+      <%= customer.order_num %> -
+      <%= customer.name %> - </p>
+      <div>
+      <% customer.orders.map do |order| %>
+          <p><%= order.quantity %>x
+          <%= order.product.description %></p>
+      <% end %>
+      </div>
+  </div>
 <% end %>
