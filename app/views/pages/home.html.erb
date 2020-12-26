@@ -1,2 +1,19 @@
 <h1>Pages#home</h1>
 <p>Find me in app/views/pages/home.html.erb</p>
+
+
+<%= form_for @items_import do |f| %>
+  <%= f.file_field :filepath %>
+  <%= f.submit 'Upload' %>
+<% end %>
+
+<% @customers.each do |customer| %>
+  <p><%= customer.date %> -
+    <%= customer.order_num %> -
+    <%= customer.name %> -
+    <% customer.orders.map do |order| %>
+      <%= order.quantity %>x
+      <%= order.product.description %>
+    <% end %>
+  </p>
+<% end %>
