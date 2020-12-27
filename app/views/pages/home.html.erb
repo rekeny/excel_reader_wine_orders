@@ -7,15 +7,21 @@
   <%= f.submit 'Upload' %>
 <% end %>
 
-<% @customers.each do |customer| %>
+<% @new_customer.each do |customer| %>
   <div class="d-flex">
-    <p><%= customer.date %> -
+    <p><%= customer.date.strftime("%d-%b-%Y") %> -
       <%= customer.order_num %> -
-      <%= customer.name %> - </p>
+      <%= customer.name %> -
+      <%= customer.address1 %> -
+      <%= customer.address2 %> -
+      <%= customer.postcode %> -
+      <%= customer.town %> -
+      <%= customer.phone_number %> -
+    </p>
       <div>
       <% customer.orders.map do |order| %>
-          <p><%= order.quantity %>x
-          <%= order.product.description %></p>
+          <p><strong><%= order.quantity %>x
+          <%= order.product.description %></strong></p>
       <% end %>
       </div>
   </div>
