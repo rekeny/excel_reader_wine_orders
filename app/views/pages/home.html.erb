@@ -7,29 +7,49 @@
   <%= f.submit 'Upload' %>
 <% end %>
 <div id="new-orders">
-  <% @new_customer.each do |customer| %>
-    <div class="d-flex">
-      <p><%= customer.date.strftime("%d-%b-%Y") %> -
-        <%= customer.order_num %> -
-        <%= customer.name %> -
-        <%= customer.address1 %> -
-        <%= customer.address2 %> -
-        <%= customer.postcode %> -
-        <%= customer.town %> -
-        <%= customer.phone_number %> -
-      </p>
-        <div>
-        <% customer.orders.map do |order| %>
-            <p><strong><%= order.quantity %>x
-            <%= order.product.description %></strong></p>
-        <% end %>
-        </div>
-        <p><%= customer.ready ? 'Done' : 'Waiting' %></p>
-        <p><%= customer.courier.nil? ? 'No selected yet' : customer.courier %></p>
+  <table>
+    <tr>
+      <th>Date</th>
+      <th>Order Num</th>
+      <th>Name</th>
+      <th>Address 1</th>
+      <th>Address 2</th>
+      <th>Postcode</th>
+      <th>Town</th>
+      <th>Phone Number</th>
+      <th>Order</th>
+      <th>Ready for collection</th>
+      <th>Courier</th>
+    </tr>
+    <% @new_customers.each do |customer| %>
+      <tr>
+        <td><%= customer.date.strftime("%d-%b-%Y") %></td>
+        <td><%= customer.order_num %></td>
+        <td><%= customer.name %></td>
+        <td><%= customer.address1 %></td>
+        <td><%= customer.address2 %></td>
+        <td><%= customer.postcode %></td>
+        <td><%= customer.town %></td>
+        <td><%= customer.phone_number %></td>
+        <td>
+          <% customer.orders.map do |order| %>
+            <p><%= order.quantity %> x
+            <%= order.product.description %></p>
+          <% end %>
+        </td>
+        <td>
+          <i class="<%= customer.ready ? 'fas fa-check' : 'fas fa-times' %>"></i></td>
+      </tr>
+    <% end %>
 
-    </div>
-  <% end %>
+  </table>
 </div>
+
+
+
+
+
+<!--  -->
 
 <div id="to-be-completed">
 
