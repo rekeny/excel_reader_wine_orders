@@ -24,6 +24,9 @@
             <%= order.product.description %></strong></p>
         <% end %>
         </div>
+        <p><%= customer.ready ? 'Done' : 'Waiting' %></p>
+        <p><%= customer.courier.nil? ? 'No selected yet' : customer.courier %></p>
+
     </div>
   <% end %>
 </div>
