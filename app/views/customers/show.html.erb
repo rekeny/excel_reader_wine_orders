@@ -1,1 +1,44 @@
-<p>Hello Show</p>
+<div class="d-flex">
+  <div class="d-flex">
+    <div>
+      <p>Order Number:</p>
+      <p>Name:</p>
+      <p>Address:</p>
+      <p>Address:</p>
+      <p>Postcode:</p>
+      <p>Town:</p>
+      <p>Phone Number:</p>
+    </div>
+    <div>
+      <p><%= @customer.order_num %></p>
+      <p><%= @customer.name %></p>
+      <p><%= @customer.address1 %></p>
+      <p><%= @customer.address2 %></p>
+      <p><%= @customer.postcode %></p>
+      <p><%= @customer.town %></p>
+      <p><%= @customer.phone_number %></p>
+    </div>
+  </div>
+
+  <div>
+    <h3>Order:</h3>
+      <% @customer.orders.map do |order| %>
+        <p><%= order.quantity %> x <%= order.product.description %></p>
+      <% end %>
+  </div>
+</div>
+<div>
+  <% if @customer.reports.count.positive? %>
+    <div>
+      <% @customer.reports.each do |report| %>
+        <p><%= report.date.strftime("%d/%m/%Y") %></p>
+        <p><%= report.content %></p>
+      <% end %>
+    </div>
+  <% end %>
+  <%= simple_form_for [@customer, @report] do |f| %>
+    <%= f.input :date, as: :date, html5: true  %>
+    <%= f.input :content, as: :text %>
+    <%= f.submit 'Add' %>
+  <% end %>
+</div>

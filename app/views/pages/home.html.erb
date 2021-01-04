@@ -21,7 +21,11 @@
       <% @new_customers.each do |customer| %>
         <tr>
           <td><%= customer.date.strftime("%d-%b-%Y") %></td>
-          <td><%= customer.order_num %></td>
+          <td>
+            <%= link_to customer_path(customer) do %>
+            <%= customer.order_num %>
+            <% end %>
+          </td>
           <td><%= customer.name %></td>
           <td><%= customer.address1 %></td>
           <td><%= customer.address2 %></td>
@@ -71,7 +75,11 @@
       <% @customers_unready.each do |customer| %>
         <tr>
           <td><%= customer.date.strftime("%d-%b-%Y") %></td>
-          <td><%= customer.order_num %></td>
+          <td>
+            <%= link_to customer_path(customer) do %>
+              <%= customer.order_num %>
+            <% end %>
+          </td>
           <td>
             <%= link_to ready_path(customer), method: :patch, remote: true do %>
               <i class="<%= customer.ready ? 'fas fa-check' : 'fas fa-times' %>"></i>

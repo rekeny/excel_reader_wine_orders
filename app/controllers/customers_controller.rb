@@ -2,6 +2,7 @@ class CustomersController < ApplicationController
   # protect_from_forgery except: [:courier]
   def show
     @customer = Customer.find(params[:id])
+    @report = Report.new
   end
 
   def ready
