@@ -100,7 +100,28 @@
   </div>
 
   <div id="issues-list">
-
+    <% @customers_reports.each do |customer| %>
+      <table>
+        <tr>
+          <th>Date</th>
+          <th>Order Num</th>
+          <th>Reports</th>
+        </tr>
+        <tr>
+          <td><%= customer.date.strftime("%d-%b-%Y") %></td>
+          <td>
+            <%= link_to customer_path(customer) do %>
+              <%= customer.order_num %>
+            <% end %>
+          </td>
+          <td>
+            <%= link_to customer_path(customer) do %>
+              <%= customer.reports.count %>
+            <% end %>
+          </td>
+        </tr>
+      </table>
+    <% end %>
   </div>
 </div>
 

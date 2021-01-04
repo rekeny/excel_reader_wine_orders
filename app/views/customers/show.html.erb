@@ -37,7 +37,7 @@
     </div>
   <% end %>
   <%= simple_form_for [@customer, @report] do |f| %>
-    <%= f.input :date, as: :date, html5: true  %>
+    <%= f.input :date, as: :date, html5: true, :input_html => { :value => Date.today}  %>
     <%= f.input :content, as: :text %>
     <%= f.submit 'Add' %>
   <% end %>
