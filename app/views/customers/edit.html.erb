@@ -1,0 +1,49 @@
+<div>
+  <table>
+    <tr>
+      <td>Order number:</td>
+      <td><%= @customer.order_num %></td>
+    </tr>
+    <tr>
+      <td>Name:</td>
+      <td><%= @customer.name %></td>
+    </tr>
+    <tr>
+      <td>Address:</td>
+      <td><%= @customer.address1 %></td>
+    </tr>
+    <tr>
+      <td>Address:</td>
+      <td><%= @customer.address2 %></td>
+    </tr>
+    <tr>
+      <td>Postcode:</td>
+      <td><%= @customer.postcode %></td>
+    </tr>
+    <tr>
+      <td>Town:</td>
+      <td><%= @customer.town %></td>
+    </tr>
+    <tr>
+      <td>Phone Number:</td>
+      <td><%= @customer.phone_number %></td>
+    </tr>
+    <tr>
+      <td>Courier:</td>
+      <td>
+        <%= simple_form_for @customer, html: { class: 'd-flex' } do |f| %>
+          <%= f.input :courier, collection: ['DPD', 'Deevee'], label: false %>
+          <%= f.submit 'Update' %>
+      <% end %>
+      </td>
+    </tr>
+    <tr>
+      <td>Ready:</td>
+      <td>
+        <%= link_to ready_path(@customer), method: :patch, remote: true do %>
+          <i class="<%= @customer.ready ? 'fas fa-check' : 'fas fa-times' %>"></i>
+        <% end %>
+      </td>
+    </tr>
+  </table>
+</div>

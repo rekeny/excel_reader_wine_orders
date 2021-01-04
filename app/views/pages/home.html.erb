@@ -44,9 +44,9 @@
             <% end %>
           </td>
           <td>
-            <% if customer.courier.nil? %>
+            <% if customer.courier.nil? || customer.courier.blank? %>
               <%= simple_form_for customer, url: courier_path(customer), html: { class: 'trigger' }, method: :patch do |f| %>
-                <%= f.input :courier, collection: ['DPD', 'Deevee'] %>
+                <%= f.input :courier, collection: ['DPD', 'Deevee'], label: false %>
               <% end %>
             <% else %>
               <%= customer.courier %>
