@@ -31,4 +31,12 @@ import "bootstrap";
 document.addEventListener('turbolinks:load', () => {
   // Call your functions here, e.g:
   // initSelect2();
+  if (document.querySelector('.excel-app')) {
+    const forms = document.querySelectorAll('.trigger');
+    forms.forEach((form) => {
+      form.addEventListener('change', (e) => {
+        form.submit();
+      })
+    })
+  }
 });
