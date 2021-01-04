@@ -100,13 +100,13 @@
   </div>
 
   <div id="issues-list">
-    <% @customers_reports.each do |customer| %>
-      <table>
-        <tr>
-          <th>Date</th>
-          <th>Order Num</th>
-          <th>Reports</th>
-        </tr>
+    <table>
+      <tr>
+        <th>Date</th>
+        <th>Order Num</th>
+        <th>Reports</th>
+      </tr>
+      <% @customers_reports.each do |customer| %>
         <tr>
           <td><%= customer.date.strftime("%d-%b-%Y") %></td>
           <td>
@@ -120,8 +120,8 @@
             <% end %>
           </td>
         </tr>
-      </table>
-    <% end %>
+      <% end %>
+    </table>
   </div>
 </div>
 
