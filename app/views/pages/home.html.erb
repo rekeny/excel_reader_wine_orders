@@ -1,40 +1,127 @@
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
-
-
-<%= form_for @items_import do |f| %>
-  <%= f.file_field :filepath %>
-  <%= f.submit 'Upload' %>
-<% end %>
-<div id="new-orders">
-  <% @new_customer.each do |customer| %>
-    <div class="d-flex">
-      <p><%= customer.date.strftime("%d-%b-%Y") %> -
-        <%= customer.order_num %> -
-        <%= customer.name %> -
-        <%= customer.address1 %> -
-        <%= customer.address2 %> -
-        <%= customer.postcode %> -
-        <%= customer.town %> -
-        <%= customer.phone_number %> -
-      </p>
-        <div>
-        <% customer.orders.map do |order| %>
-            <p><strong><%= order.quantity %>x
-            <%= order.product.description %></strong></p>
-        <% end %>
-        </div>
-        <p><%= customer.ready ? 'Done' : 'Waiting' %></p>
-        <p><%= customer.courier.nil? ? 'No selected yet' : customer.courier %></p>
-
-    </div>
+<div class="excel-app">
+  <%= form_for @items_import do |f| %>
+    <%= f.file_field :filepath %>
+    <%= f.submit 'Upload' %>
   <% end %>
+  <div id="new-orders">
+    <table>
+      <tr>
+        <th>Date</th>
+        <th>Order Num</th>
+        <th>Name</th>
+        <th>Address 1</th>
+        <th>Address 2</th>
+        <th>Postcode</th>
+        <th>Town</th>
+        <th>Phone Number</th>
+        <th>Order</th>
+        <th>Ready</th>
+        <th>Courier</th>
+      </tr>
+      <% @new_customers.each do |customer| %>
+        <tr>
+          <td><%= customer.date.strftime("%d-%b-%Y") %></td>
+          <td>
+            <%= link_to customer_path(customer) do %>
+            <%= customer.order_num %>
+            <% end %>
+          </td>
+          <td><%= customer.name %></td>
+          <td><%= customer.address1 %></td>
+          <td><%= customer.address2 %></td>
+          <td><%= customer.postcode %></td>
+          <td><%= customer.town %></td>
+          <td><%= customer.phone_number %></td>
+          <td>
+            <% customer.orders.map do |order| %>
+              <p><%= order.quantity %> x
+              <%= order.product.description %></p>
+            <% end %>
+          </td>
+          <td>
+            <%= link_to ready_path(customer), method: :patch, remote: true do %>
+              <i class="<%= customer.ready ? 'fas fa-check' : 'fas fa-times' %>"></i>
+            <% end %>
+          </td>
+          <td>
+            <% if customer.courier.nil? || customer.courier.blank? %>
+              <%= simple_form_for customer, url: courier_path(customer), html: { class: 'trigger' }, method: :patch do |f| %>
+                <%= f.input :courier, collection: ['DPD', 'Deevee'], label: false %>
+              <% end %>
+            <% else %>
+              <%= customer.courier %>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+
+    </table>
+  </div>
+
+
+
+
+
+  <!--  -->
+
+  <div id="to-be-completed">
+    <table>
+      <tr>
+        <th>Date</th>
+        <th>Order Num</th>
+        <th>Ready</th>
+        <th>Courier</th>
+      </tr>
+      <% @customers_unready.each do |customer| %>
+        <tr>
+          <td><%= customer.date.strftime("%d-%b-%Y") %></td>
+          <td>
+            <%= link_to customer_path(customer) do %>
+              <%= customer.order_num %>
+            <% end %>
+          </td>
+          <td>
+            <%= link_to ready_path(customer), method: :patch, remote: true do %>
+              <i class="<%= customer.ready ? 'fas fa-check' : 'fas fa-times' %>"></i>
+            <% end %>
+          </td>
+          <td>
+            <% if customer.courier.nil? %>
+              <%= simple_form_for customer, url: courier_path(customer), html: { class: 'trigger' }, method: :patch do |f| %>
+                <%= f.input :courier, collection: ['DPD', 'Deevee'] %>
+              <% end %>
+            <% else %>
+              <%= customer.courier %>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </table>
+  </div>
+
+  <div id="issues-list">
+    <table>
+      <tr>
+        <th>Date</th>
+        <th>Order Num</th>
+        <th>Reports</th>
+      </tr>
+      <% @customers_reports.each do |customer| %>
+        <tr>
+          <td><%= customer.date.strftime("%d-%b-%Y") %></td>
+          <td>
+            <%= link_to customer_path(customer) do %>
+              <%= customer.order_num %>
+            <% end %>
+          </td>
+          <td>
+            <%= link_to customer_path(customer) do %>
+              <%= customer.reports.count %>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </table>
+  </div>
 </div>
 
-<div id="to-be-completed">
-
-</div>
-
-<div id="issues-list">
-
-</div>

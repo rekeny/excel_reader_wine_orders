@@ -1,1 +1,70 @@
-<p>Hello Show</p>
+<div class="d-flex">
+  <div>
+    <table>
+      <tr>
+        <td>Order number:</td>
+        <td><%= @customer.order_num %></td>
+      </tr>
+      <tr>
+        <td>Name:</td>
+        <td><%= @customer.name %></td>
+      </tr>
+      <tr>
+        <td>Address:</td>
+        <td><%= @customer.address1 %></td>
+      </tr>
+      <tr>
+        <td>Address:</td>
+        <td><%= @customer.address2 %></td>
+      </tr>
+      <tr>
+        <td>Postcode:</td>
+        <td><%= @customer.postcode %></td>
+      </tr>
+      <tr>
+        <td>Town:</td>
+        <td><%= @customer.town %></td>
+      </tr>
+      <tr>
+        <td>Phone Number:</td>
+        <td><%= @customer.phone_number %></td>
+      </tr>
+      <tr>
+        <td>Courier:</td>
+        <td><%= @customer.courier %></td>
+      </tr>
+      <tr>
+        <td>Ready:</td>
+        <td>
+          <%= link_to ready_path(@customer), method: :patch, remote: true do %>
+            <i class="<%= @customer.ready ? 'fas fa-check' : 'fas fa-times' %>"></i>
+          <% end %>
+        </td>
+      </tr>
+    </table>
+  </div>
+
+  <div>
+    <h3>Order:</h3>
+      <% @customer.orders.map do |order| %>
+        <p><%= order.quantity %> x <%= order.product.description %></p>
+      <% end %>
+  </div>
+</div>
+<%= link_to 'Edit', edit_customer_path(@customer) %>
+<%= link_to 'Back', :root %>
+<div>
+  <% if @customer.reports.count.positive? %>
+    <div>
+      <% @customer.reports.order(date: :desc).each do |report| %>
+        <p><%= report.date.strftime("%d/%m/%Y") %></p>
+        <p><%= report.content %></p>
+      <% end %>
+    </div>
+  <% end %>
+  <%= simple_form_for [@customer, @report] do |f| %>
+    <%= f.input :date, as: :date, html5: true, :input_html => { :value => Date.today}  %>
+    <%= f.input :content, as: :text %>
+    <%= f.submit 'Add' %>
+  <% end %>
+</div>
