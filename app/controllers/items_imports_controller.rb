@@ -13,7 +13,6 @@ class ItemsImportsController < ApplicationController
         customer = order_exist(user_data)
         product = product(user_data['Description'])
         order = create_order(customer, product, user_data['Qty'])
-        order.customer = customer
         items_import.destroy
         next if order.save!
       end
@@ -39,10 +38,6 @@ class ItemsImportsController < ApplicationController
     end
   end
 
-  def create_order(customer, product, quantity)
-    Order.new(quantity: quantity, customer_id: customer.id, product_id: product.id)
-  end
-
   def product(description)
     if Product.exists?(description: description)
       product = Product.find_by(description: description)
@@ -51,5 +46,9 @@ class ItemsImportsController < ApplicationController
       product.save!
     end
     return product
+  end
+
+  def create_order(customer, product, quantity)
+    Order.new(quantity: quantity, customer_id: customer.id, product_id: product.id)
   end
 end
