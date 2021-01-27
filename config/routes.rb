@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   root to: 'pages#home'
   resources :items_imports, only: [:create]
   resources :customers, only: [:show, :edit, :update] do
-    resources :reports, only: [:new, :create]
+    resources :reports, only: [:create]
   end
   patch 'ready', to: 'customers#ready'
   patch 'courier', to: 'customers#courier'
