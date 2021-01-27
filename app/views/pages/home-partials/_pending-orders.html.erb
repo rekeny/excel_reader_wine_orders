@@ -1,0 +1,33 @@
+<h3>Pending Orders</h3>
+<table class="w-100">
+  <tr>
+    <th>Date</th>
+    <th>Order Num</th>
+    <th>Ready</th>
+    <th>Courier</th>
+  </tr>
+  <% @customers_unready.each do |customer| %>
+    <tr>
+      <td><%= customer.date.strftime("%d-%b-%Y") %></td>
+      <td>
+        <%= link_to customer_path(customer) do %>
+          <%= customer.order_num %>
+        <% end %>
+      </td>
+      <td>
+        <%= link_to ready_path(customer), method: :patch, remote: true do %>
+          <i class="<%= customer.ready ? 'fas fa-check' : 'fas fa-times' %>"></i>
+        <% end %>
+      </td>
+      <td>
+        <% if customer.courier.nil? %>
+          <%= simple_form_for customer, url: courier_path(customer), html: { class: 'trigger' }, method: :patch do |f| %>
+            <%= f.input :courier, collection: ['DPD', 'Deevee'], label: false %>
+          <% end %>
+        <% else %>
+          <%= customer.courier %>
+        <% end %>
+      </td>
+    </tr>
+  <% end %>
+</table>
