@@ -1,9 +1,10 @@
 <nav class="bg-light navbar-light d-flex align-items-center">
   <h5 class="mx-5 my-0">Wine Shop</h5>
 
-  <%= form_for @items_import do |f| %>
-    <%= f.file_field :filepath %>
-    <%= f.submit 'Upload' %>
+  <% if controller.action_name == 'home' %>
+    <%= form_for @items_import do |f| %>
+      <%= f.file_field :filepath %>
+      <%= f.submit 'Upload' %>
+    <% end %>
   <% end %>
-
 </nav>
