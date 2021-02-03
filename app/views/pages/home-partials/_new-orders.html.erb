@@ -29,7 +29,7 @@
       <td><%= customer.phone_number %></td>
       <td>
         <% customer.orders.map do |order| %>
-          <p><%= order.quantity %> x
+          <p><strong><%= order.quantity %></strong> x
           <%= order.product.description %></p>
         <% end %>
       </td>
