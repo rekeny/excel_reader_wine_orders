@@ -3,7 +3,7 @@
   <tr>
     <th>Date</th>
     <th>Order Num</th>
-    <th>Ready</th>
+    <th>Dispatched</th>
     <th>Courier</th>
   </tr>
   <% @customers_unready.each do |customer| %>
@@ -15,8 +15,8 @@
         <% end %>
       </td>
       <td>
-        <%= link_to ready_path(customer), method: :patch, remote: true do %>
-          <i class="<%= customer.ready ? 'fas fa-check' : 'fas fa-times' %>"></i>
+        <%= link_to dispatched_path(customer), method: :patch, remote: true do %>
+          <i class="<%= customer.dispatched ? 'fas fa-check' : 'fas fa-times' %>"></i>
         <% end %>
       </td>
       <td>

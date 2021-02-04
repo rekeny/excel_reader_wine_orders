@@ -4,7 +4,7 @@ class Customer < ApplicationRecord
   has_many :reports
   # , dependant: :destroy
 
-  def self.ready(ready)
-    !ready
+  def self.dispatched(dispatched)
+    !dispatched
   end
 end
