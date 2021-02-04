@@ -1,6 +1,8 @@
 <nav class="bg-light navbar-light d-flex align-items-center justify-content-between">
   <div class="d-flex">
-    <h5 class="mx-5 my-0">Wine Shop</h5>
+    <%= link_to root_path do %>
+      <h5 class="mx-5 my-0">Wine Shop</h5>
+    <% end %>
 
     <% if controller.action_name == 'home' %>
       <%= form_for @items_import do |f| %>
@@ -9,7 +11,10 @@
       <% end %>
     <% end %>
   </div>
-  <div class="mx-5">
-    <p>Welcome, <%= current_user.name.capitalize %></p>
-  </div>
+    <div class="mx-5 nav-item dropdown">
+      <p class="" id="navbarDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Welcome, <%= current_user.name.capitalize %></p>
+      <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+        <%= link_to 'Home', root_path, class: 'dropdown-item' %>
+      </div>
+    </div>
 </nav>
