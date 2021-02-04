@@ -11,10 +11,10 @@ class CustomersController < ApplicationController
     redirect_to customer_path(@customer) if @customer.update(strong_params)
   end
 
-  def ready
+  def dispatched
     customer = Customer.find(params[:format])
-    ready = Customer.ready(customer.ready)
-    customer.update(ready: ready)
+    dispatched = Customer.dispatched(customer.dispatched)
+    customer.update(dispatched: dispatched)
     redirect_back(fallback_location: root_path)
   end
 
@@ -31,6 +31,6 @@ class CustomersController < ApplicationController
   end
 
   def strong_params
-    params.require(:customer).permit(:date, :order_num, :name, :address1, :address2, :postcode, :town, :phone_number, :ready, :courier)
+    params.require(:customer).permit(:date, :order_num, :name, :address1, :address2, :postcode, :town, :phone_number, :dispatched, :courier)
   end
 end
