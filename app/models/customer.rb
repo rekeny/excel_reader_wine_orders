@@ -7,4 +7,8 @@ class Customer < ApplicationRecord
   def self.dispatched(dispatched)
     !dispatched
   end
+
+  def self.delivered(delivered)
+    !delivered
+  end
 end

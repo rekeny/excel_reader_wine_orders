@@ -7,6 +7,11 @@ class PagesController < ApplicationController
     @customers_reports = Customer.order(:created_at).select { |customer| customer.reports.count.positive? }
   end
 
+  def dispatched
+    @customers_dispatched = Customer.order(:date).select { |customer| customer.dispatched && customer.delivered == false }
+    @customers_delivered = Customer.order('date DESC').select { |customer| customer.delivered }
+  end
+
   private
 
   def timer(created)
