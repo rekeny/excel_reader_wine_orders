@@ -12,10 +12,12 @@
     <% end %>
   </div>
     <div class="mx-5 nav-item dropdown">
-      <p class="" id="navbarDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Welcome, <%= current_user.name.capitalize %></p>
-      <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-        <%= link_to 'Home', root_path, class: 'dropdown-item' %>
-        <%= link_to 'Dispatched', dispatched_path, class: 'dropdown-item' %>
-      </div>
+      <% if user_signed_in? %>
+        <p class="" id="navbarDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Welcome, <%= current_user.name.capitalize %></p>
+        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+          <%= link_to 'Home', root_path, class: 'dropdown-item' %>
+          <%= link_to 'Dispatched', dispatched_path, class: 'dropdown-item' %>
+        </div>
+      <% end %>
     </div>
 </nav>
