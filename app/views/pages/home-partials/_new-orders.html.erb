@@ -9,6 +9,7 @@
     <th>Postcode</th>
     <th>Town</th>
     <th>Phone Number</th>
+    <th>Email</th>
     <th>Order</th>
     <th>Dispatched</th>
     <th>Courier</th>
@@ -27,6 +28,7 @@
       <td><%= customer.postcode %></td>
       <td><%= customer.town %></td>
       <td><%= customer.phone_number %></td>
+      <td><%= customer.email %></td>
       <td>
         <% customer.orders.map do |order| %>
           <p><strong><%= order.quantity %></strong> x
