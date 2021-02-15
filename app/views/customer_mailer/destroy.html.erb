@@ -1,0 +1,15 @@
+<p>Good Morning Fernando!</p>
+
+<p>I hope you are having a great day!!</p>
+
+<p>Order num: <%= @customer.order_num %> has been destroyed</p>
+<p>Name: <%= @customer.name %></p>
+<% @customer.orders.each do |order| %>
+  <p><%= order.quantity %>x <%= order.product.description %></p>
+<% end %>
+
+<p>Have a lovely day!!</p>
+
+<p>Bye! </p>
+
+<p>Myself!</p>
