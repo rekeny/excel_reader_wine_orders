@@ -1,6 +1,8 @@
-<p>Hello <%= @user.name %></p>
+<p>Hello <%= @user.name %>,</p>
 
-<p>See below the invitation for <%= link_to 'Wine Shop Orders', root_url %> that Fernando has created to control the wine orders from the shop better.</p>
+<p>I have created a platform where we can upload the excel sheets from the Tate Shop, and make easier to be tracked.</p>
+
+<p>See below the invitation for <%= link_to 'Wine Shop Orders', root_url %>.</p>
 
 <p><%= link_to t("devise.mailer.invitation_instructions.accept"), accept_invitation_url(@resource, invitation_token: @token) %></p>
 
