@@ -16,6 +16,10 @@ class ItemsImportsController < ApplicationController
         items_import.destroy
         next if order.save!
       end
+      User.all.each do |user|
+        mail = UserMailer.with(user: user).new_order(current_user, request.base_url)
+        mail.deliver_now
+      end
       redirect_to root_path
     else
       flash[:alert] = "Unknown file type: #{strong_params.original_filename}"
