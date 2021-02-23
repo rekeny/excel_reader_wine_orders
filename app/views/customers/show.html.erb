@@ -19,7 +19,7 @@
       </tr>
       <tr>
         <td>Postcode:</td>
-        <td><%= @customer.postcode %></td>
+          <td><%= link_to "#{@customer.postcode}", "https://www.google.com/maps/search/?api=1&query=#{@customer.postcode}", target: "_blank"%></td>
       </tr>
       <tr>
         <td>Town:</td>
@@ -56,7 +56,7 @@
   </div>
 </div>
 <%= link_to 'Edit', edit_customer_path(@customer) %>
-<%= link_to 'Back', :root %>
+<%= link_to 'Back', :back %>
 <div>
   <% if @customer.reports.count.positive? %>
     <div>
