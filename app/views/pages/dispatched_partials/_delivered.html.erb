@@ -25,7 +25,7 @@
         <td><%= customer.name %></td>
         <td><%= customer.address1 %></td>
         <td><%= customer.address2 %></td>
-        <td><%= customer.postcode %></td>
+        <td><%= link_to "#{customer.postcode}", "https://www.google.com/maps/search/?api=1&query=#{customer.postcode}", target: "_blank"%></td>
         <td><%= customer.town %></td>
         <td><%= customer.phone_number %></td>
         <td><%= customer.email %></td>

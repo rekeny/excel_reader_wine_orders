@@ -19,7 +19,7 @@
       </tr>
       <tr>
         <td>Postcode:</td>
-        <td><%= @customer.postcode %></td>
+          <td><%= link_to "#{@customer.postcode}", "https://www.google.com/maps/search/?api=1&query=#{@customer.postcode}", target: "_blank"%></td>
       </tr>
       <tr>
         <td>Town:</td>
