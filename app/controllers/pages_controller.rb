@@ -1,6 +1,7 @@
 class PagesController < ApplicationController
   def home
     @items_import = ItemsImport.new
+    @name = User.find_by(email: cookies['email']).name unless cookies['email'].nil?
     # Filter the new entries up to 18 hours since they are created
     @new_customers = Customer.order(:created_at).select { |customer| timer(customer.created_at) < 18 }
     @customers_unready = Customer.order(:created_at).select { |customer| timer(customer.created_at) > 18 && customer.dispatched == false }

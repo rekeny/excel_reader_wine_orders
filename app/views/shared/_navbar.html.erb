@@ -13,7 +13,7 @@
   </div>
     <div class="mx-5 nav-item dropdown">
       <% if user_signed_in? %>
-        <p class="" id="navbarDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Welcome, <%= current_user.name.capitalize %></p>
+        <p id="navbarDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-name="<%= @name %>">Welcome, <%= current_user.name.capitalize %></p>
         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
           <%= link_to 'Home', root_path, class: 'dropdown-item' %>
           <%= link_to 'Dispatched', dispatched_path, class: 'dropdown-item' %>
