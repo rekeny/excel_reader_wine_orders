@@ -9,6 +9,7 @@ require("@rails/activestorage").start()
 require("channels")
 
 
+
 // Uncomment to copy all static images under ../images to the output folder and reference
 // them with the image_pack_tag helper in views (e.g <%= image_pack_tag 'rails.png' %>)
 // or the `imagePath` JavaScript helper below.
@@ -24,6 +25,8 @@ require("channels")
 
 // External imports
 import "bootstrap";
+import store from "../custom/store";
+import track from "../custom/track";
 
 // Internal imports, e.g:
 // import { initSelect2 } from '../components/init_select2';
@@ -38,5 +41,13 @@ document.addEventListener('turbolinks:load', () => {
         form.submit();
       })
     })
+  }
+
+  if (document.getElementById('new_user')) {
+    store();
+  }
+
+  if (document.getElementById('new-orders')) {
+    track();
   }
 });
