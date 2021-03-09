@@ -4,7 +4,7 @@ class PagesController < ApplicationController
     @name = User.find_by(email: cookies['email']).name unless cookies['email'].nil?
     # Filter the new entries up to 18 hours since they are created
     @new_customers = Customer.order(:created_at).select { |customer| timer(customer.created_at) < 18 }
-    @customers_unready = Customer.order(:created_at).select { |customer| timer(customer.created_at) > 18 && customer.dispatched == false }
+    @customers_unready = Customer.order(:created_at).select { |customer| timer(customer.created_at) >= 18 && customer.dispatched == false }
     @customers_reports = Customer.order(:created_at).select { |customer| customer.reports.count.positive? }
   end
 
