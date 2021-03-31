@@ -2,7 +2,7 @@ class Api::V1::OrdersController < Api::V1::BaseController
   def create
     @order = Order.new(customer_params)
     @product = get_product(params[:order][:product])
-    @customer = Customer.find_by(order_num: params[:order][:customer])
+    @customer = Customer.find_by(name: params[:order][:customer])
     p @order
     # @order.quantity = params[:order][:quantity]
     @order.customer_id = @customer.id
