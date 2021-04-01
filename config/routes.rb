@@ -17,6 +17,7 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :customers, only: [ :create ]
       resources :orders, only: [ :create ]
+      delete '/orders', to: 'orders#destroy_order'
     end
   end
 
