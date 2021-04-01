@@ -10,6 +10,15 @@ class Api::V1::OrdersController < Api::V1::BaseController
     render_error unless @order.save
   end
 
+  def destroy_order
+    @customer = Customer.find_by(name: params[:order][:customer])
+    p @customer
+    @product = Product.find_by(description: params[:order][:product])
+    p @product
+    @order = Order.find_by(customer_id: @customer.id, product_id: @product.id)
+    @order.destroy
+  end
+
   private
 
   def customer_params
